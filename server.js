@@ -38,7 +38,7 @@ function handleWebhook(req, res) {
     }
 
     console.log(`Executing script for project: ${projectId} at directory: ${githubDir}`);
-    exec(`bash /script.sh ${githubDir}`, (error, stdout, stderr) => {
+    exec(`bash ./script.sh ${githubDir}`, (error, stdout, stderr) => {
         if (error) {
             console.error(`Error executing script: ${stderr}`);
             return res.sendStatus(500);
