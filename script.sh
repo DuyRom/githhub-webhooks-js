@@ -33,8 +33,8 @@ find "$GITHUB_DIR" -type f | while read -r file; do
     mv "$TEMP_FILE" "$file"
 done
 
-# Process files in the parent directory of .github
-find "$PARENT_DIR" -maxdepth 1 -type f | while read -r file; do
+# Process files in the parent directory of .github, excluding certain patterns
+find "$PARENT_DIR" -maxdepth 1 -type f ! -name 'composer*' ! -name 'yarn*' ! -name 'package*' | while read -r file; do
     echo "Processing file: $file"
     TEMP_FILE=$(mktemp)
     while IFS= read -r line; do
