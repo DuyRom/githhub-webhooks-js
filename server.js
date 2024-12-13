@@ -48,6 +48,10 @@ function handleWebhook(req, res) {
     });
 }
 
+app.get('/', (req, res) => {
+    res.send('Webhook server is running');
+});
+
 // Endpoint cho webhook với tên dự án trong URL
 app.post('/webhook/:projectId', handleWebhook);
 
