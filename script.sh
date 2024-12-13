@@ -13,7 +13,7 @@ PARENT_DIR=$(dirname "$GITHUB_DIR")
 
 echo "Processing files in directory: $GITHUB_DIR and its parent directory: $PARENT_DIR"
 
-# Process files in .github directory
+# Process all files in .github directory
 find "$GITHUB_DIR" -type f | while read -r file; do
     echo "Processing file: $file"
     TEMP_FILE=$(mktemp)
@@ -33,8 +33,8 @@ find "$GITHUB_DIR" -type f | while read -r file; do
     mv "$TEMP_FILE" "$file"
 done
 
-# Process files in the parent directory of .github, excluding certain patterns
-find "$PARENT_DIR" -maxdepth 1 -type f ! -name 'composer*' ! -name 'yarn*' ! -name 'package*' | while read -r file; do
+# Process only .txt files in the parent directory of .github
+find "$PARENT_DIR" -maxdepth 1 -type f -name '*.txt' | while read -r file; do
     echo "Processing file: $file"
     TEMP_FILE=$(mktemp)
     while IFS= read -r line; do
